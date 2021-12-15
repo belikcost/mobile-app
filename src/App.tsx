@@ -1,15 +1,15 @@
 import React from 'react';
-import './styles/App.css';
-import Header from "./components/Header";
+
+import Header from "./primitives/Header";
 import Orders from "./components/Orders";
 
-function App() {
+import './styles/App.css';
+
+export const App = () => {
     return (
         <>
             <Header/>
             <Orders/>
         </>
     );
-}
-
-export default App;
+};

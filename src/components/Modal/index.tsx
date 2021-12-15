@@ -1,9 +1,17 @@
-import {OrderType} from "../interfaces";
-import times from "../images/times.svg";
-import {buildDate, buildPriceAndQuantity} from "./Order";
+import { buildDate, buildPriceAndQuantity } from "../Orders/helpers";
 
-const Modal = ({order, closeModal}: { order: OrderType, closeModal: () => void }) => {
-    const date = buildDate(new Date(order.date!));
+import { OrderType } from "../../interfaces";
+
+import times from "../../images/times.svg";
+
+interface IModalProps {
+    order: OrderType;
+    closeModal: () => void;
+}
+
+const Modal = ({ order, closeModal }: IModalProps) => {
+    const date = buildDate(new Date(order.date));
+
     return (
         <div className="show-more">
             <header className="show-more__header">

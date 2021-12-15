@@ -10,7 +10,7 @@ export interface OrderType {
     "id": string,
     "number": string,
     "sale": number,
-    "date"?: string,
+    "date": string,
     "goods": GoodType[]
 }
 

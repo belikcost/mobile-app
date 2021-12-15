@@ -1,4 +1,4 @@
-import bar from '../images/bars.svg';
+import bar from '../../images/bars.svg';
 
 const Header = () => {
 
