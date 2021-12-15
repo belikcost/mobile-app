@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-import Order from "./Elements/Order";
+import OrdersSwiper from "../OrdersSwiper";
 import Modal from "../Modal";
 
 import { InitialStateType, OrderType } from "../../interfaces";
@@ -14,13 +13,13 @@ const Orders = () => {
     const [showMore, setShowMore] = useState<OrderType>();
 
     const dispatch = useDispatch();
-    const ordersSelector = useSelector((state: InitialStateType) => state.orders);
+    const orders = useSelector((state: InitialStateType) => state.orders);
 
     useEffect(() => {
         dispatch(getOrdersRequest());
     }, []);
 
-    if (ordersSelector.length === 0) {
+    if (orders.length === 0) {
         return null;
     }
 
@@ -31,13 +30,7 @@ const Orders = () => {
                     <h4>Список заказов</h4>
                     <img className="orders_filter" src={filter} alt="Иконка"/>
                 </header>
-                <Swiper className="orders__body" slidesPerView={1} spaceBetween={30}>
-                    {ordersSelector.map(o => (
-                        <SwiperSlide key={o.id} onClick={() => setShowMore(o)} className="order_slide">
-                            <Order order={o}/>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                <OrdersSwiper orders={orders} setShowMore={setShowMore}/>
             </div>
             {showMore && (
                 <Modal order={showMore} closeModal={() => setShowMore(undefined)}/>
